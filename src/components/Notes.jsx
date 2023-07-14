@@ -2,11 +2,17 @@ import React from "react";
 import notes from "../notes.js";
 import NoteContent from "./NoteContent.jsx";
 
-const Notes = () => {
+const Notes = ({ note, handleDelete }) => {
   return (
-    <div className="mt-[5rem] flex flex-wrap justify-center">
-      {notes.map((note) => (
-        <NoteContent title={note.title} content={note.content} />
+    <div className="flex flex-wrap justify-start">
+      {note.map((notes) => (
+        <NoteContent
+          key={notes.id}
+          id={notes.id}
+          title={notes.title}
+          content={notes.content}
+          handleDelete={handleDelete}
+        />
       ))}
     </div>
   );
