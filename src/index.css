@@ -7,5 +7,7 @@
 @layer base {
   body {
     @apply bg-gray-300;
+    @apply bg-[url("https://www.transparenttextures.com/patterns/connected.png")];
+    /* Brought url from transparent textures */
   }
 }

@@ -1,10 +1,9 @@
 import React from "react";
-import notes from "../notes.js";
 import NoteContent from "./NoteContent.jsx";
 
 const Notes = ({ note, handleDelete }) => {
   return (
-    <div className="flex flex-wrap justify-start">
+    <div className="flex flex-wrap justify-start items-baseline">
       {note.map((notes) => (
         <NoteContent
           key={notes.id}

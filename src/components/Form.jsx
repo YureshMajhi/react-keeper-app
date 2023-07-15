@@ -1,10 +1,16 @@
 import React, { useState } from "react";
+import AddIcon from "@mui/icons-material/Add";
+import Zoom from "@mui/material/Zoom";
 
 const Form = ({ handleClick }) => {
   const [noteItem, setNoteItem] = useState({
     title: "",
     content: "",
   });
+  const [isExpanded, setIsExpanded] = useState(false);
+  const handleNoteClick = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,27 +39,37 @@ const Form = ({ handleClick }) => {
         name="title"
         type="text"
         placeholder="Title"
-        className="bg-gray-100 p-3"
+        className={`${
+          isExpanded ? "none" : "hidden"
+        } bg-gray-100 p-3 rounded-t-md shadow-md shadow-gray-500`}
         onChange={handleChange}
         value={noteItem.title}
       />
       <textarea
         name="content"
-        rows="4"
-        placeholder="Take a content..."
+        rows={isExpanded ? "4" : "1"}
+        placeholder="Take a note..."
         onChange={handleChange}
-        className="bg-gray-100 p-3"
+        onClick={handleNoteClick}
+        className={`${
+          isExpanded ? "" : "rounded-t-md"
+        } bg-gray-100 p-3 rounded-b-md shadow-md shadow-gray-500`}
         value={noteItem.content}
       />
-      <button
-        onClick={() => {
-          handleClick(noteItem.title, noteItem.content);
-          setNoteItem({ title: "", content: "" });
-        }}
-        className="absolute bottom-[-15px] right-0 bg-yellow-500 text-white w-10 h-10 rounded-full"
-      >
-        Add
-      </button>
+
+      <Zoom in={isExpanded ? true : false}>
+        <button
+          onClick={() => {
+            handleClick(noteItem.title, noteItem.content);
+            setNoteItem({ title: "", content: "" });
+          }}
+          className={`${
+            isExpanded ? "none" : "hidden"
+          } absolute bottom-[-15px] right-[15px] bg-yellow-500 text-white h-8 w-8 rounded-full`}
+        >
+          <AddIcon />
+        </button>
+      </Zoom>
     </div>
   );
 };

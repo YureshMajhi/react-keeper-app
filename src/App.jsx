@@ -22,7 +22,11 @@ function App() {
   };
 
   const handleDelete = (id) => {
-    console.log(id);
+    setNote((currentNote) => {
+      return currentNote.filter((notes) => {
+        return notes.id !== id;
+      });
+    });
   };
   return (
     <>
